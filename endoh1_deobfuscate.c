@@ -13,7 +13,18 @@
 // as a 'side effect.' Assignment in the initialization of a for loop will
 // make the compiler complain; when he uses this, Mr. Endoh wraps the
 // expressions in parens to silence that.
+
+
+// Use of the comma operator in C:
+// For example, in the statement
+// *r++ = w, r
 //
+// The contents of the address pointed to by r is set to w (a complex double).
+// The assignment produces a return value of 0, which the comma promptly discards.
+// r is returned (a pointer)
+// The contents of r are incremented (postfix operator)
+//
+// Mr. Endoh uses the comma extensively to perform assignment inline.
 
 #include <stdio.h>//  .IOCCC                                         Fluid-  #
 #include <unistd.h>  //2012                                         _Sim!_  #
@@ -33,12 +44,13 @@ char *o = b, *t;
 int main(){
 
 	for (; 0 < (x = getc(stdin));){
-		w = x > 10 ? 32 < x ? 4[*r++ = w, r] = w + 1, *r = r[5] = x == 35, r += 9 : 0, w - I : (x = w + 2);;
+		w = x > 10 ? 32 < x ? 4[*r++ = w, r] = w + 1, *r = r[5] = x == 35, r += 9 : 0, w - I : (x = w + 2);; // why the heck are there two semicolons
     }
 
 	for (;; puts(o), o = b + 4) { 
         // while(true){ 
-        // puts(o) // clears the screen
+        // puts(o) // clears the screen, returns 0
+        // the comma discards the return value
         // o = b + 4 // o points to the 4th elem of b
 		for (p = a; p[2] = p[1] * 9, p < r; p += 5){
 			for (q = a; w = cabs(d = *p - *q) / 2 - 1, q < r; q += 5){
