@@ -2,16 +2,16 @@
 // G -> Gravity
 // P -> Pressure
 // V -> Velocity
-// these are read in from command line args
+// These are read in from command line args
 
 // Endoh:
-// Though some assignments may look meaningless, it is actually meaningful; 
-// it extracts “integer part of real part” from a complex value by assigning 
-// (and casting) it to an integer-type variable.
+// "Though some assignments may look meaningless, it is actually meaningful;
+// it extracts “integer part of real part” from a complex value by assigning
+// (and casting) it to an integer-type variable."
 
-// Essential info: in C, a = b EVALUATES to 0, and performs an assignment 
-// as a 'side effect.' Assignment in the initialization of a for loop will 
-// make the compiler complain; when he uses this, Mr. Endoh wraps the 
+// Essential info: in C, a = b EVALUATES to 0, and performs an assignment
+// as a 'side effect.' Assignment in the initialization of a for loop will
+// make the compiler complain; when he uses this, Mr. Endoh wraps the
 // expressions in parens to silence that.
 //
 
@@ -47,10 +47,10 @@ int main(){
                 }
             }
         }
-		for (p = a; p[3] = G, p < r; p += 5){
+		for (p = a; p[3] = Gravity, p < r; p += 5){
 			for (q = a; w = cabs(d = *p - *q) / 2 - 1, q < r; q += 5){
 				if (0 < (x = 1 - w)){
-					p[3] += w * (d * (3 - p[2] - q[2]) * P + p[4] * V - q[4] * V) / p[2];\
+					p[3] += w * (d * (3 - p[2] - q[2]) * Pressure + p[4] * Velocity - q[4] * Velocity) / p[2];
                 }
             }
         }
