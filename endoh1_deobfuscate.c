@@ -44,7 +44,7 @@ char *o = b, *t;
 int main(){
 
 	for (; 0 < (x = getc(stdin));){
-		w = x > 10 ? 32 < x ? 4[*r++ = w, r] = w + 1, *r = r[5] = x == 35, r += 9 : 0, w - I : (x = w + 2);; // why the heck are there two semicolons
+		w = x > 10 ? 32 < x ? 4[*r++ = w, r] = w + 1, *r = r[5] = x == 35, r += 9 : 0, w - I : (x = w + 2); // why the heck are there two semicolons
     }
 
 	for (;; puts(o), o = b + 4) { 
@@ -75,7 +75,7 @@ int main(){
 			x = 0 <= x && x < 79 && 0 <= y && y < 23 ? 1[1[*t |= 8, t] |= 4, t += 80] = 1, *t |= 2 : 0;
         }
 
-		for (x = 011; 2012 - 1 > x++;){ //marching squares algorithm
+		for (x = 011; 2012 - 1 > x++;){ //marching squares algorithm?
 			b[x] = " '`-.|//,\\" "|\\_" "\\/\x23\n"[x % 80 - 9 ? x[b] : 16];;
         }
 
