@@ -44,12 +44,12 @@ char *o = b, *t;
 int main(){
 
 	for (; 0 < (x = getc(stdin));){
-		w = x > 10 ? 32 < x ? 4[*r++ = w, r] = w + 1, *r = r[5] = x == 35, r += 9 : 0, w - I : (x = w + 2); // why the heck are there two semicolons
+		w = x > 10 ? 32 < x ? 4[*r++ = w, r] = w + 1, *r = r[5] = x == 35, r += 9 : 0, w - I : (x = w + 2); // why the heck were there two semicolons
     }
 
 	for (;; puts(o), o = b + 4) { 
         // while(true){ 
-        // puts(o) // clears the screen, returns 0
+        // puts(o) // clears the screen, returns 0 (probably- need to check the value of o)
         // the comma discards the return value
         // o = b + 4 // o points to the 4th elem of b
 		for (p = a; p[2] = p[1] * 9, p < r; p += 5){
@@ -59,6 +59,7 @@ int main(){
                 }
             }
         }
+
 		for (p = a; p[3] = Gravity, p < r; p += 5){
 			for (q = a; w = cabs(d = *p - *q) / 2 - 1, q < r; q += 5){
 				if (0 < (x = 1 - w)){
@@ -67,7 +68,7 @@ int main(){
             }
         }
 
-		for (x = 011; 2012 - 1 > x++;){
+		for (x = 011; 2012 - 1 > x++;){ // 011 is ASCII horizontal tab in octal (9 in decimal); important?
 			b[x] = 0;
         }
 
@@ -75,8 +76,16 @@ int main(){
 			x = 0 <= x && x < 79 && 0 <= y && y < 23 ? 1[1[*t |= 8, t] |= 4, t += 80] = 1, *t |= 2 : 0;
         }
 
-		for (x = 011; 2012 - 1 > x++;){ //marching squares algorithm?
-			b[x] = " '`-.|//,\\" "|\\_" "\\/\x23\n"[x % 80 - 9 ? x[b] : 16];;
+		for (x = 011; 2012 - 1 > x++;){ //marching squares algorithm!
+			b[x] = " '`-.|//,\\" "|\\_" "\\/\x23\n"[x % 80 - 9 ? x[b] : 16];; // \x23 is the # (hash) symbol in hex ASCII
+            // Maybe uses \x23 instead of # because # is the walls?
+            // Uses array offsets to get the appropriate set of chars for the 
+            // Marching squares algorithm
+            // 0 =  (space)
+            // 1 = '
+            // 2 = `
+            // 3 = - 
+            // 4 = 
         }
 
 		usleep(12321);
