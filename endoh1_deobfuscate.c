@@ -44,7 +44,8 @@ char *o = b, *t;
 int main(){
 
 	for (; 0 < (x = getc(stdin));){
-        w = x > 10 ? 32 < x ? 4[*r++ = w, r] = w + 1, *r = r[5] = x == 35, r += 9 : 0, w - _Complex_I : (x = w + 2); // why the heck were there two semicolons    
+        w = (x > 10) ? // w is assigned the truthiness of x > 10 (a 1 or 0) and the conditional is evaluated on w.
+            32 < x ? 4[*r++ = w, r] = w + 1, *r = r[5] = x == 35, r += 9 : 0, w - _Complex_I : (x = w + 2); // why the heck were there two semicolons    
     }
  
 

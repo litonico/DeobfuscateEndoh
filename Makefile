@@ -1,3 +1,6 @@
+# scratch: scratchpad.c
+# 	gcc -g -Wall -W -pedantic scratchpad.c -o scratch
+
 deobfuscated: endoh1_deobfuscate.c
 	gcc -g -Wall -W -pedantic -D_BSD_SOURCE -std=c99 -DGravity=1 -DPressure=4 -DVelocity=4 endoh1_deobfuscate.c -o endoh1_deobfuscate -lm
 
