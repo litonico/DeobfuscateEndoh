@@ -32,8 +32,12 @@
 
 double complex	a[97687],
 // Endoh: "Every five entries of double complex a[] contain information
-// of one particle: position, wall-flag, density, force, and velocity.
+// of one particle: position, wall-flag, density, force, and velocity."
        *p, *q, *r = a, w = 0, d;
+
+    // p = position ???
+    // *r = rho (density) ???
+    //
 int	x, y;
 char b[6856] = "\x1b[2J" //clears the screen (ANSI escape code). '\x1b' is equivalent to ESC.
                "\x1b[1;1H     "; // Moves the cursor to line 1, char 1
@@ -41,8 +45,12 @@ char b[6856] = "\x1b[2J" //clears the screen (ANSI escape code). '\x1b' is equiv
 
 char *o = b, *t;
 
+// The character # represents “wall particle” (a particle with fixed position), and any other non-space characters represent free particles.
+
 int main(){
 
+    // Endoh: "This program reads a text from standard input, and uses it as 
+    // an initial configuration of the particles."
 	for (; 0 < (x = getc(stdin));){
         w = (x > 10 ? (32 < x ? 4[*r++ = w, r] = w + 1, *r = r[5] = x == 35, r += 9 : 0, w - _Complex_I) : (x = w + 2)); // why the heck were there two semicolons
 
@@ -54,6 +62,8 @@ int main(){
         // puts(o) // clears the screen, returns 0 (probably- need to check the value of o)
         // the comma discards the return value
         // o = b + 4 // o points to the 4th elem of b
+
+        // Iterate over the positions(?) of particles
 		for (p = a; p[2] = p[1] * 9, p < r; p += 5){
 			for (q = a; w = cabs(d = *p - *q) / 2 - 1, q < r; q += 5){
 				if (0 < (x = 1 - w)){
@@ -70,7 +80,7 @@ int main(){
             }
         }
 
-		for (x = 011; 2012 - 1 > x++;){ // 011 is ASCII horizontal tab in octal (9 in decimal); important?
+		for (x = 011; 2012 - 1 > x++;){ // 011 is ASCII horizontal tab in octal; important?
 			b[x] = 0;
         }
 
@@ -78,7 +88,7 @@ int main(){
 			x = 0 <= x && x < 79 && 0 <= y && y < 23 ? 1[1[*t |= 8, t] |= 4, t += 80] = 1, *t |= 2 : 0;
         }
 
-		for (x = 011; 2012 - 1 > x++;){ //marching squares algorithm!
+		for (x = 011; 2012 - 1 > x++;){ // marching squares algorithm!
 			b[x] = " '`-.|//,\\" "|\\_" "\\/\x23\n"[x % 80 - 9 ? x[b] : 16];; // \x23 is the # (hash) symbol in hex ASCII
             // Maybe uses \x23 instead of # because # is the walls?
             // Uses array offsets to get the appropriate set of chars for the 
