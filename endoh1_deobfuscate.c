@@ -54,6 +54,18 @@ int main(){
 	for (; 0 < (x = getc(stdin));){
         w = (x > 10 ? (32 < x ? 4[*r++ = w, r] = w + 1, *r = r[5] = x == 35, r += 9 : 0, w - _Complex_I) : (x = w + 2)); // why the heck were there two semicolons
 
+        // This is conditional assignment. w is set equal to the result of the expression.
+        //
+        // if (w > 10){
+        // ...
+        //      if (32 < x):
+        // }
+        // 
+        // else {
+        // x = w + 2;
+        // w = 0;
+        // }
+
     }
  
 

@@ -11,6 +11,11 @@ run_obfuscated:
 	./endoh1 < endoh1.c 
 
 run:
-	echo "Can't let you do that, Fox!"
-	echo "Don't run this from Vim- continue? Y/n"
-	./endoh1_deobfuscate < endoh1.c 
+	@ruby -e "puts 'Can\'t let you do that, Fox!'"
+	@ruby -e "puts 'Don\'t run this from Vim or any non-interactive shell- continue? Y/n '"
+	@ruby -e "yn = gets; 								\
+			  if (yn =~ /[Yy](es)?/); 					\
+			  	exec './endoh1_deobfuscate < endoh1.c' 	\
+		      else										\
+			  	exit 									\
+			  end"
