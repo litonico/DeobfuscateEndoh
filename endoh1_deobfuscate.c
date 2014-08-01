@@ -32,12 +32,9 @@
 
 double complex	a[97687],
 // Endoh: "Every five entries of double complex a[] contain information
-// of one particle: position, wall-flag, density, force, and velocity."
+// of one particle: position, wall-flag, density, force, and velocity in turn."
        *p, *q, *r = a, w = 0, d;
 
-    // p = position ???
-    // *r = rho (density) ???
-    //
 int	x, y;
 char b[6856] = "\x1b[2J" //clears the screen (ANSI escape code). '\x1b' is equivalent to ESC.
                "\x1b[1;1H     "; // Moves the cursor to line 1, char 1
@@ -45,37 +42,85 @@ char b[6856] = "\x1b[2J" //clears the screen (ANSI escape code). '\x1b' is equiv
 
 char *o = b, *t;
 
-// The character # represents “wall particle” (a particle with fixed position), and any other non-space characters represent free particles.
+// The character # represents “wall particle” (a particle with fixed position),
+// and any other non-space characters represent free particles.
 
 int main(){
 
     // Endoh: "This program reads a text from standard input, and uses it as 
     // an initial configuration of the particles."
 	for (; 0 < (x = getc(stdin));){
-        w = (x > 10 ? (32 < x ? 4[*r++ = w, r] = w + 1, *r = r[5] = x == 35, r += 9 : 0, w - _Complex_I) : (x = w + 2)); // why the heck were there two semicolons
+         w = (x > 10 ? (32 < x ? 4[*r++ = w, r] = w + 1, *r = r[5] = x == 35, r += 9 : 0, w - _Complex_I) : (x = w + 2)); // why the heck were there two semicolons
 
-        // This is conditional assignment. w is set equal to the result of the expression.
+        // Breaking it down!
         //
-        // if (w > 10){
-        // ...
-        //      if (32 < x):
-        // }
-        // 
-        // else {
-        // x = w + 2;
-        // w = 0;
-        // }
+        // 4[*r++ = w, r] = w + 1,
+        //
+        // 4[x] is a weird but valid array access: it's the same as x[4] 
+        // for any array x.  The expression x[y] is defined to be *((x)+(y)), 
+        // so x and y can be swapped (Kernigan and Ritchie).
+        //
+        // Again, the comma makes this into a multi-statement instruction
+        // *r++ = w; // -> returns 0, which is disregarded
+        // r[4] = w+1;
+        //
+        // Note the order of application in `*r++'! To be a little more clear:
+        //
+        // *(r++) = w;
+        // r[4] = w+1;
+        //
+        //
+        // Okay, next bit
+        // *r = r[5] = x == 35,
+        //
+        // Assignment is right-associative, so let's put some parens in
+        //
+        // (*r = (r[5] = (x == 35))),
+        //  
+        // Doesn't really look much better, does it? But we can break it down.
+        // x == 35 is a boolean, so let's rewrite this as an if statement.
+        //
+        // *r is r[0]; given the context, that's a little clearer
+        //
+        // if (x == 35)
+        //      r[0] = r[5] = 1;
+        // else 
+        //      r[0] = r[5] = 0;
+        //
+        //
+        // More verbose, but more comprehensible!
+        //
+        // r += 9;
+        //
 
-    }
+        /*
+        if (x > 10){
+            //  
+            w = (32 < x ? 4[*r++ = w, r] = w + 1, *r = r[5] = x == 35, r += 9 : 0, (w - _Complex_I));
+            
+            if (x > 32){
+                w = 4[*r++ = w, r] = w + 1, *r = r[5] = x == 35, r += 9;
+            }
+            else{
+                w = 0, w - _Complex_I;
+            }
+            //
+        }
+        else {
+            x = w + 2;
+            w = x;
+        }
+        
+        */
  
+    }
 
-	for (;; puts(o), o = b + 4) { 
+	for (;; puts(o), o = b + 4) { // The SPH algorithm
         // while(true){ 
         // puts(o) // clears the screen, returns 0 (probably- need to check the value of o)
         // the comma discards the return value
         // o = b + 4 // o points to the 4th elem of b
 
-        // Iterate over the positions(?) of particles
 		for (p = a; p[2] = p[1] * 9, p < r; p += 5){
 			for (q = a; w = cabs(d = *p - *q) / 2 - 1, q < r; q += 5){
 				if (0 < (x = 1 - w)){
@@ -84,6 +129,7 @@ int main(){
             }
         }
 
+        // Iterate over the positions(?) of particles
 		for (p = a; p[3] = Gravity, p < r; p += 5){
 			for (q = a; w = cabs(d = *p - *q) / 2 - 1, q < r; q += 5){
 				if (0 < (x = 1 - w)){
@@ -100,7 +146,7 @@ int main(){
 			x = 0 <= x && x < 79 && 0 <= y && y < 23 ? 1[1[*t |= 8, t] |= 4, t += 80] = 1, *t |= 2 : 0;
         }
 
-		for (x = 011; 2012 - 1 > x++;){ // marching squares algorithm!
+		for (x = 011; 2012 - 1 > x++;){ // Render the particles as marching squares
 			b[x] = " '`-.|//,\\" "|\\_" "\\/\x23\n"[x % 80 - 9 ? x[b] : 16];; // \x23 is the # (hash) symbol in hex ASCII
             // Maybe uses \x23 instead of # because # is the walls?
             // Uses array offsets to get the appropriate set of chars for the 
