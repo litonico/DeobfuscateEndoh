@@ -49,7 +49,7 @@ int main(){
 
     // Endoh: "This program reads a text from standard input, and uses it as 
     // an initial configuration of the particles."
-	for (; 0 < (x = getc(stdin));){
+	for (; 0 < (x = getc(stdin));){ // While the end of stdin is not reached
          w = (x > 10 ? (32 < x ? 4[*r++ = w, r] = w + 1, *r = r[5] = x == 35, r += 9 : 0, w - _Complex_I) : (x = w + 2)); // why the heck were there two semicolons
 
         // Breaking it down!
@@ -78,11 +78,16 @@ int main(){
         // (*r = (r[5] = (x == 35))),
         //  
         // Doesn't really look much better, does it? But we can break it down.
-        // x == 35 is a boolean, so let's rewrite this as an if statement.
+        // x == 35 is a boolean: x is the current character, and 35 is the 
+        // ASCII code for '#' (the 'hash' symbol), which Mr. Endoh uses to mark
+        // a wall in the simulation.
+        //
+        // Let's rewrite this as an if statement:
         //
         // *r is r[0]; given the context, that's a little clearer
         //
-        // if (x == 35)
+        // if (x == 35) // if x (the current character) is '#'
+        //      // This sets the 'wall flag' for unmoveable particles.
         //      r[0] = r[5] = 1;
         // else 
         //      r[0] = r[5] = 0;
